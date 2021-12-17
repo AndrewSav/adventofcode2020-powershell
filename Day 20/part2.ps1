@@ -172,10 +172,8 @@ function getMonstersNumber {
       $t = (0..($monster.count - 1)).foreach({
           @(, $monster[$_].Matches($theTile.data[$line + $_]).foreach({ $_.index }))
         })
-      if (intersect $t) {
-        $true
-      }
-    }).count
+      (intersect $t).count
+    }) | Measure-Object -Sum | Select -ExpandProperty Sum
 }
 
 function final {
