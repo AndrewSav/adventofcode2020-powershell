@@ -27,6 +27,7 @@ foreach ($c in 0..($i.Count - 1)) {
     $acc += $i[$j]
   }
   if ($acc -eq $target) {
-    return $i[$c] + $i[$j]
+    $m = $i[$c..$j] | Measure-Object -Minimum -Maximum
+    return $m.Minimum + $m.Maximum
   }
 }
